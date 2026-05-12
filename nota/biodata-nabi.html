@@ -15,6 +15,13 @@
         .vibrate { animation: shake 0.1s linear infinite; }
         .hidden-content { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s ease; }
         .show-content { max-height: 100px; opacity: 1; margin-top: 10px; }
+        
+        /* Custom Checkbox Style for Fintech Feel */
+        .option-input:checked + .option-label {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            color: white;
+        }
     </style>
 </head>
 <body class="min-h-screen pb-20">
@@ -37,10 +44,9 @@
             </div>
 
             <div class="grid grid-cols-1 gap-4" id="note-container">
-                <!-- Data Nota akan dijana oleh JS -->
+                <!-- Data Nota dijana oleh JS -->
             </div>
 
-            <!-- Button Game -->
             <div class="mt-12 text-center">
                 <button onclick="showConfirm()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-4 px-10 rounded-2xl shadow-lg shadow-blue-900/20 transition-all w-full md:w-auto">
                     🚀 Game Latih Tubi
@@ -48,120 +54,141 @@
             </div>
         </section>
 
-        <!-- Section 2: Ruang Game (Hidden by default) -->
+        <!-- Section 2: Ruang Game -->
         <section id="game-section" class="hidden">
-            <div class="glass-effect rounded-3xl p-8 sticky top-5 z-10 mb-8 border-b border-blue-500/30">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <p class="text-xs text-slate-400 uppercase tracking-widest">Masa Berjalan</p>
-                        <h2 id="timer" class="text-2xl font-mono font-bold text-blue-400">00:00</h2>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-xs text-slate-400 uppercase tracking-widest">Progres</p>
-                        <h2 id="progress" class="text-2xl font-bold text-white">1/9</h2>
-                    </div>
+            <div class="glass-effect rounded-3xl p-6 sticky top-5 z-10 mb-8 border-b border-blue-500/30 flex justify-between items-center">
+                <div>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest">Masa Berjalan</p>
+                    <h2 id="timer" class="text-2xl font-mono font-bold text-blue-400">00:00</h2>
+                </div>
+                <div class="text-right">
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest">Penilaian Digital</p>
+                    <h2 class="text-lg font-bold text-white">Siri Biodata</h2>
                 </div>
             </div>
 
-            <div id="quiz-container" class="space-y-6">
-                <!-- Soalan akan muncul di sini -->
+            <div id="quiz-container" class="space-y-8">
+                <!-- Soalan dijana oleh JS -->
             </div>
 
-            <button onclick="submitGame()" class="mt-10 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-emerald-900/20">
-                Hantar Jawapan
+            <button onclick="submitGame()" class="mt-12 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-2xl transition-all shadow-xl shadow-blue-900/40">
+                Hantar Jawapan & Kira Markah
             </button>
         </section>
 
-        <!-- Section 3: Result (Hidden) -->
+        <!-- Section 3: Result -->
         <section id="result-section" class="hidden text-center">
-            <div class="glass-effect rounded-3xl p-10">
-                <div class="text-6xl mb-6">🏆</div>
-                <h2 class="text-3xl font-bold text-white">Keputusan Anda</h2>
-                <div class="flex justify-center gap-10 my-8">
-                    <div><p class="text-slate-400 text-sm">Markah</p><p id="final-score" class="text-3xl font-bold text-emerald-400">0/0</p></div>
-                    <div><p class="text-slate-400 text-sm">Masa</p><p id="final-time" class="text-3xl font-bold text-blue-400">0s</p></div>
+            <div class="glass-effect rounded-[40px] p-10 border border-white/10">
+                <div class="inline-block p-4 bg-emerald-500/20 rounded-full mb-6">
+                    <svg class="w-12 h-12 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
-                <div class="bg-white/5 p-6 rounded-2xl mb-8">
-                    <p id="motivation" class="italic text-slate-300">"Teruskan usaha!"</p>
+                <h2 class="text-3xl font-bold text-white">Analisis Keputusan</h2>
+                
+                <div class="grid grid-cols-2 gap-4 my-8">
+                    <div class="bg-white/5 p-4 rounded-2xl">
+                        <p class="text-slate-400 text-xs uppercase mb-1">Skor Akhir</p>
+                        <p id="final-score" class="text-3xl font-bold text-emerald-400">0/0</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded-2xl">
+                        <p class="text-slate-400 text-xs uppercase mb-1">Tempo Rekod</p>
+                        <p id="final-time" class="text-3xl font-bold text-blue-400">0s</p>
+                    </div>
                 </div>
-                <button onclick="location.reload()" class="text-blue-400 font-semibold flex items-center justify-center gap-2 mx-auto">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4v5h5M20 20v-5h-5M20 4.2a9 9 0 100 15.6" stroke-width="2"/></svg>
-                    Ulang Semula
+
+                <div class="bg-gradient-to-br from-blue-600/10 to-purple-600/10 p-6 rounded-3xl mb-8 border border-blue-500/20">
+                    <p id="motivation" class="text-slate-200 leading-relaxed font-medium">"Analisis data menunjukkan prestasi yang baik."</p>
+                </div>
+
+                <button onclick="location.reload()" class="bg-white text-slate-900 font-bold py-4 px-8 rounded-2xl flex items-center justify-center gap-2 mx-auto hover:bg-slate-200 transition-all w-full">
+                    Ulang Semula Transaksi Ilmu
                 </button>
             </div>
         </section>
     </main>
 
-    <!-- Modal Noti (Fintech Cartoon Style) -->
-    <div id="confirm-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-6">
-        <div class="bg-white rounded-[32px] p-8 max-w-sm w-full text-center transform scale-90 transition-transform">
-            <div class="text-6xl mb-4">🎮</div>
-            <h3 class="text-2xl font-bold text-slate-900">Sedia untuk beraksi?</h3>
-            <p class="text-slate-500 mt-2">Pastikan anda sudah hafal biodata tadi. Masa akan dikira!</p>
+    <!-- Modal Noti (Fintech Style) -->
+    <div id="confirm-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-xl hidden items-center justify-center z-50 p-6">
+        <div class="bg-white rounded-[40px] p-8 max-w-sm w-full text-center shadow-2xl">
+            <div class="w-20 h-20 bg-blue-100 rounded-3xl mx-auto mb-6 flex items-center justify-center text-4xl">🚀</div>
+            <h3 class="text-2xl font-bold text-slate-900">Sedia untuk Bermula?</h3>
+            <p class="text-slate-500 mt-2 text-sm leading-relaxed">Sistem akan mula mengira masa dan ketepatan jawapan anda sekarang.</p>
             <div class="flex flex-col gap-3 mt-8">
-                <button onclick="startGame()" class="bg-slate-900 text-white font-bold py-4 rounded-2xl hover:bg-slate-800 transition-all">Mula Sekarang</button>
-                <button onclick="hideConfirm()" class="text-slate-400 font-medium py-2">Nanti dulu</button>
+                <button onclick="startGame()" class="bg-blue-600 text-white font-bold py-4 rounded-2xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">Sah & Mula</button>
+                <button onclick="hideConfirm()" class="text-slate-400 font-semibold py-2">Batal</button>
             </div>
         </div>
     </div>
 
     <script>
         const dataNota = [
-            { t: "Bapa", j: "Abdullah bin Abdul Muttalib" },
-            { t: "Ibu", j: "Aminah binti Wahab" },
-            { t: "Datuk", j: "Abdul Muttalib bin Hashim" },
-            { t: "Ibu susuan", j: "Suwaibatul Aslamiah & Halimatun Sa'adiah" },
-            { t: "Istri pertama", j: "Khadijah binti Khuwailid" },
-            { t: "Tarikh lahir", j: "12 Rabiulawal" },
-            { t: "Tahun lahir", j: "Tahun Gajah" },
-            { t: "Kabilah/Bangsa", j: "Quraisy" },
-            { t: "Jumlah anak", j: "7 orang" }
+            { t: "Bapa", j: "Abdullah bin Abdul Muttalib", opt: ["Abu Talib", "Abdullah bin Abdul Muttalib"] },
+            { t: "Ibu", j: "Aminah binti Wahab", opt: ["Aminah binti Wahab", "Halimah As-Saadiah"] },
+            { t: "Datuk", j: "Abdul Muttalib bin Hashim", opt: ["Abu Lahab", "Abdul Muttalib bin Hashim"] },
+            { t: "Ibu susuan", j: "Suwaibatul Aslamiah & Halimatun Sa'adiah", opt: ["Fatimah Az-Zahra", "Suwaibatul Aslamiah & Halimatun Sa'adiah"] },
+            { t: "Istri pertama", j: "Khadijah binti Khuwailid", opt: ["Khadijah binti Khuwailid", "Aisyah binti Abu Bakar"] },
+            { t: "Tarikh lahir", j: "12 Rabiulawal", opt: ["10 Muharram", "12 Rabiulawal"] },
+            { t: "Tahun lahir", j: "Tahun Gajah", opt: ["Tahun Gajah", "Tahun Hijrah"] },
+            { t: "Kabilah/Bangsa", j: "Quraisy", opt: ["Quraisy", "Aus & Khazraj"] },
+            { t: "Jumlah anak", j: "7 orang", opt: ["5 orang", "7 orang"] }
         ];
 
         let startTime, timerInterval;
 
-        // Generate Nota
+        // Generate Nota Section
         const container = document.getElementById('note-container');
-        dataNota.forEach((item, index) => {
+        dataNota.forEach((item) => {
             const card = document.createElement('div');
-            card.className = 'note-card glass-effect p-6 rounded-2xl';
+            card.className = 'note-card glass-effect p-6 rounded-2xl border border-white/5';
             card.onclick = () => {
                 const content = card.querySelector('.hidden-content');
                 content.classList.toggle('show-content');
-                if (window.navigator.vibrate) window.navigator.vibrate(50); // Getaran Ringan
+                if (window.navigator.vibrate) window.navigator.vibrate(40);
                 card.classList.add('vibrate');
                 setTimeout(() => card.classList.remove('vibrate'), 200);
             };
-            card.innerHTML = `<p class="text-blue-400 text-xs font-bold uppercase tracking-wider">${item.t}</p>
-                              <div class="hidden-content text-xl font-semibold text-white">${item.j}</div>`;
+            card.innerHTML = `<p class="text-blue-400 text-[10px] font-bold uppercase tracking-[2px] mb-1">${item.t}</p>
+                              <div class="hidden-content text-lg font-semibold text-white">${item.j}</div>`;
             container.appendChild(card);
         });
 
-        // Game Functions
         function showConfirm() { 
             document.getElementById('confirm-modal').classList.remove('hidden');
             document.getElementById('confirm-modal').classList.add('flex');
         }
-        function hideConfirm() { 
-            document.getElementById('confirm-modal').classList.add('hidden');
-        }
+        function hideConfirm() { document.getElementById('confirm-modal').classList.add('hidden'); }
 
         function startGame() {
             hideConfirm();
             document.getElementById('note-section').classList.add('hidden');
             document.getElementById('game-section').classList.remove('hidden');
             
-            // Generate Quiz
             const quizBox = document.getElementById('quiz-container');
             dataNota.forEach((item, i) => {
+                // Shuffle options
+                const shuffledOpt = [...item.opt].sort(() => Math.random() - 0.5);
+                
+                let optionsHtml = '';
+                shuffledOpt.forEach((o, idx) => {
+                    optionsHtml += `
+                        <label class="block cursor-pointer group">
+                            <input type="radio" name="q${i}" value="${o}" class="option-input hidden">
+                            <div class="option-label p-4 rounded-xl border border-white/10 bg-white/5 text-sm transition-all group-hover:bg-white/10">
+                                ${o}
+                            </div>
+                        </label>
+                    `;
+                });
+
                 quizBox.innerHTML += `
-                    <div class="glass-effect p-6 rounded-2xl">
-                        <label class="text-sm text-slate-400 block mb-3 font-medium uppercase tracking-widest">${item.t} Nabi?</label>
-                        <input type="text" data-ans="${item.j}" class="quiz-input w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" placeholder="Taip jawapan anda...">
+                    <div class="glass-effect p-6 rounded-3xl border border-white/5">
+                        <p class="text-[10px] text-blue-400 font-bold uppercase mb-4 tracking-widest">Soalan ${i+1}</p>
+                        <h3 class="text-lg font-bold text-white mb-6">Siapakah ${item.t} Nabi Muhammad SAW?</h3>
+                        <div class="grid grid-cols-1 gap-3">
+                            ${optionsHtml}
+                        </div>
                     </div>`;
             });
 
-            // Start Timer
             startTime = Date.now();
             timerInterval = setInterval(() => {
                 const seconds = Math.floor((Date.now() - startTime) / 1000);
@@ -174,10 +201,10 @@
         function submitGame() {
             clearInterval(timerInterval);
             let score = 0;
-            const inputs = document.querySelectorAll('.quiz-input');
             
-            inputs.forEach(input => {
-                if (input.value.toLowerCase().trim() === input.getAttribute('data-ans').toLowerCase().trim()) {
+            dataNota.forEach((item, i) => {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === item.j) {
                     score++;
                 }
             });
@@ -188,11 +215,10 @@
             document.getElementById('final-score').innerText = `${score}/${dataNota.length}`;
             document.getElementById('final-time').innerText = totalTime;
 
-            // Motivasi
             const moti = document.getElementById('motivation');
-            if (score === dataNota.length) moti.innerText = "Maa syaa Allah! Anda memang pakar Sirah Nabawiyyah! ⭐";
-            else if (score > 5) moti.innerText = "Bagus! Sikit lagi nak sempurna. Teruskan mengulang kaji. 💪";
-            else moti.innerText = "Jangan menyerah, ilmu itu cahaya. Jom cuba lagi sekali! 📚";
+            if (score === dataNota.length) moti.innerText = "Maa syaa Allah! Data menunjukkan pemahaman anda sangat sempurna. Anda adalah Pakar Sirah Premium! ⭐";
+            else if (score >= 5) moti.innerText = "Prestasi yang stabil. Anda mempunyai asas yang kuat dalam mengenali Rasulullah. Teruskan usaha! 📈";
+            else moti.innerText = "Ilmu adalah aset paling berharga. Jom buat 'ulang kaji' sekali lagi untuk hasil yang lebih lumayan. 📚";
         }
     </script>
 </body>
